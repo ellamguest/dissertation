@@ -1,0 +1,27 @@
+import csv
+os.chdir('/Users/emg/Programmming/GitHub/dissertation/ask_sub_info')
+
+# RUN OAUTH_TEST TO AUTHORISE FIRST
+
+# get subscribed subreddit list object
+subreddits = r.get_my_subreddits()
+subs = list(r.get_my_subreddits())
+
+
+# make list of subscribed subreddit names
+sub_names = list()
+for i in range(len(subs)):
+    sub_names.append(subs[i].display_name)
+
+# check list right
+len(subs), len(sub_names)
+
+# export list to file
+myfile = open('subreddit_list', 'wb')
+wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+wr.writerow(sub_names)
+close('subreddit_list')
+
+import numpy as np
+np.savetxt("sub_names.txt", sub_names, delimiter=",", fmt='%s')
+np.savetxt?
