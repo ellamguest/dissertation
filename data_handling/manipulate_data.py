@@ -76,5 +76,7 @@ df['top'] = x['t1']
 
 df['mod'] = pd.get_dummies(df['distinguished'])
 
+df.to_
+
 
 
