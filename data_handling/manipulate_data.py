@@ -58,25 +58,18 @@ authors.reset_index(level=0, inplace=True)
 authors.columns = ['author', 'count']
 authors = authors[authors.author != '[deleted]'] # remove [deleted]
 
-ax = s.hist()  # s is an instance of Series
-fig = ax.get_figure()
-fig.savefig('/path/to/figure.pdf')
+
+sub_nums = np.arange(len(subreddits.subreddit))
+plt.barh(sub_nums, subreddits.subreddit_count)
+plt.yticks(sub_nums, subreddits.subreddit)
+plt.xlabel('Comment Count')
+plt.ylabel('Subreddit')
+plt.title('Monthly Comment Count by Subreddit')
+plt.gcf().savefig('sub_comment_count.jpg', bbox_inches='tight')
 
 
 
-# top level comment
-# parent id t1 = top, t3 = not
-# create varaible for t1 or t3
-# then convert to binart
-p = df.parent_id.str.split('_', expand=True)
-df['p_level'] = p[0]
-df['p_id'] = p[1]
-x = pd.get_dummies(df['p_level'])
-df['top'] = x['t1']
 
-df['mod'] = pd.get_dummies(df['distinguished'])
-
-df.to_
 
 
 
