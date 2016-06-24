@@ -6,3 +6,24 @@ PRAW_OAuth2_Test.pyc
 * .jpg
 * .pdf
 * .txt
+*.csv
+
+*.csv
+
+xold/ask_sub_info/sub_names_list
+
+ask_sub_info/sub_info.csv
+
+*.csv
+
+*.txt
+
+*.pyc
+
+*.txt
+
+*.jpg
+
+*.db
+
+*.pdf
