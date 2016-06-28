@@ -6,14 +6,8 @@ Created on Thu Jun 23 15:42:22 2016
 """
 
 import pandas as pd
-from subreddits_subsets import d
 
 df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/practice_data.csv')
-
-test = d['askanthropology'] # 990
-tops = test[test.p_level=='t1'] # 680
-nontops = test[test.p_level=='t3'] # 310
-
 
 link_ids = test.link_id.str.split('_', expand=True)[1].sort_values()
 parent_ids = test.p_id.sort_values()
@@ -23,16 +17,8 @@ parent_ids = test.p_id.sort_values()
 x = parent_ids.isin(link_ids)
 
 
-test['p_in_list'] = test.parent_id.isin(test.link_id)
-test.sum()['p_in_list'] # 310
-# all parent comments started this month
-# no need to check parents of tops against posts
-
-
-test2 = d['askscience']
-test2['p_in_list'] = test2.parent_id.isin(test2.link_id)
-test2.sum()['p_in_list'] # 16882.0
-len(test2[test2.p_level=='t3']) # 16882
+df['p_in_list'] = df.parent_id.isin(df.link_id)
+df.sum()['p_in_list'] # 310
 
 
 # top level comment

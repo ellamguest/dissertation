@@ -27,3 +27,5 @@ ask_sub_info/sub_info.csv
 *.db
 
 *.pdf
+
+*.csv
