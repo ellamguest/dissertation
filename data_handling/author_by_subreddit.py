@@ -8,6 +8,7 @@ Created on Mon Jun 27 17:47:58 2016
 import pandas as pd
 df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/practice_data.csv')
 
+''''count of subreddits by author '''
 names = df[['subreddit', 'author']]
 names = names[names.author != '[deleted]']
 names['count'] = 1
@@ -31,4 +32,20 @@ author_subs.value_counts()
 
 multi_subs = author_subs[author_subs > 1]
 # 1067 of 21602 authors post in more than 1 subreddit
+
+''' counts of comments by author ''''
+
+counts = df[['subreddit', 'author']]
+counts = counts[counts.author != '[deleted]']
+counts['count'] = 1
+counts = counts.groupby(['author']).count()
+author_comment_counts = counts.groupby(['count']).count()
+
+'''' D-Juice commented in 6 subs, TotesMessenger commented in 5''''
+
+djuice = df.loc[df.author == 'D-Juice']
+djuice_subs = list(djuice.subreddit.unique())
+
+totes = df.loc[df.author == 'TotesMessenger']
+totes_subs = list(totes.subreddit.unique())
 

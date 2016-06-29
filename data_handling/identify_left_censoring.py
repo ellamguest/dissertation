@@ -7,15 +7,14 @@ Created on Mon Jun 27 12:40:59 2016
 
 import pandas as pd
 
+'''' compiled post data:
 df1 = pd.read_csv('/Users/emg/Google Drive/MSc SRMS/MSc Disseration/data/BigQuery/full_posts/reddit_posts_2016_04/results-20160627-123923.csv')
 df2 = pd.read_csv('/Users/emg/Google Drive/MSc SRMS/MSc Disseration/data/BigQuery/full_posts/reddit_posts_2016_04/results-20160627-124040.csv')
 posts = df1.append(df2).sort('created_utc')
-posts.to_csv('2016_04_full_posts.csv')
+posts.to_csv('2016_04_full_posts.csv')''''
 
+posts = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/2016_04_full_posts.csv')
 comments = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/practice_data.csv')
-
-
-'4csu0y' in posts.id.get_values()
 
 post_ids = posts.id.head() # 20945
 parent_ids = comments.p_id
@@ -121,3 +120,15 @@ def check_time(x_id):
     
 parent_missing_comments = comments.loc[comments.p_id.isin(parent_missing)]
 parent_missing_comments['date'] = pd.to_datetime(parent_missing_comments.created_utc, unit='s')
+
+
+'''' attempting again, building new database with confirmed parentage ''''
+
+tops_with_parents = comments.loc[comments['
+
+cols = ['id', 'author', 'subreddit', 'created_utc', 'link_id', 'parent_id', 'p_level', 'p_id']
+comments = comments[cols]
+
+links = comments.link_id.str.split('_', expand=True)
+comments['link_level'] = links[0]
+comments['link_id'] = links[1]

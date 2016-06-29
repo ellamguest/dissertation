@@ -5,11 +5,12 @@ Created on Thu Jun 23 13:04:19 2016
 @author: emg
 """
 import pandas as pd
+import numpy as np
 from __future__ import division
 from mod_data import sub_mods
 from top_data import sub_tops
 
-df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/practice_data.csv')
+df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/practice_data.csv', index_col=0)
 
 sub_list = ['AskAcademia', 'AskAnthropology', 'AskComputerScience',
        'AskElectronics', 'AskEngineers', 'AskHistorians',
@@ -73,3 +74,11 @@ for x in subnames:
     del_rate = len(data[data.author=='[deleted]'])/len(data)
     avg_score = data.mean()['score']
     d_stats[name] = [len(data), n_authors, n_mods, n_tops, del_rate, avg_score]
+
+'''' getting top*mod ''''
+
+df['top_mod'] = df['mod'] * df['top'] # 498
+
+tops = df.top.sum() # 60522
+mod_commentss = df['mod'].sum() # 5151
+top_mod_comments = df.top_mod.sum() # 498

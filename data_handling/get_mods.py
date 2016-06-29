@@ -7,24 +7,13 @@ Created on Mon Jun 27 17:04:34 2016
 '''fetching current moderators'''
 import praw
 import pandas as pd
-stats_df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/sub_stats.csv', header=0)
+stats_df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/sub_stats.csv', header=0, index_col=0)
+
 
 r = praw.Reddit(user_agent="test by /u/wednesdaysguest")
 name = 'AskSocialScience'
-sub = r.get_subreddit(name)
 
-names = ['AskAcademia',
- 'AskAnthropology',
- 'AskComputerScience',
- 'AskElectronics',
- 'AskEngineers',
- 'AskHistorians',
- 'AskLiteraryStudies',
- 'AskPhotography',
- 'AskSocialScience',
- 'AskStatistics',
- 'askphilosophy',
- 'askscience']
+names = list(stats_df.subreddit.get_values())
 
 '''getting all mods as of june 2016, not nec those during time point'''
 mod_dict = {}
@@ -34,19 +23,22 @@ for x in names:
     n = []
     for y in mods:
         n.append(y.name)
-    n.append(len(n))
     mod_dict[x] = n
 
 mod_nums = {}
 for x in mod_dict.keys():
-    mod_nums[x] = mod_dict[x][-1]
+    mod_nums[x] = len(mod_dict[x])
 
-stats_df['mod_comments'] = stats_df['mods']
+
 
 newdf = pd.DataFrame()
 newdf['subreddit'] = mod_nums.keys()
 newdf['mods'] = mod_nums.values()
+newdf['names'] = mod_dict.values()
+newdf = newdf.sort('subreddit')
+newdf = newdf.reset_index(drop=True)
 stats_df['mods'] = newdf['mods']
+stats_df['mod_names'] = newdf['names']
 
 cols = ['subreddit',
  'comments',
@@ -55,7 +47,8 @@ cols = ['subreddit',
  'mod_comments',
  'tops',
  'del_rate',
- 'avg_score']
+ 'avg_score',
+ 'mod_names']
  
 stats_df = stats_df[cols]
 
