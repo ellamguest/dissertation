@@ -13,16 +13,33 @@ df2 = pd.read_csv('/Users/emg/Google Drive/MSc SRMS/MSc Disseration/data/BigQuer
 posts = df1.append(df2).sort('created_utc')
 posts.to_csv('2016_04_full_posts.csv')''''
 
-posts = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/2016_04_full_posts.csv')
-comments = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/practice_data.csv')
+posts = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/2016_04_full_posts.csv', index_col=0)
+comments = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/practice_data.csv', index_col=0)
+#comments = comments[['id', 'author', 'created_utc', 'link_id', 'parent_id', 'p_level', 'p_id']]
 
-post_ids = posts.id.head() # 20945
-parent_ids = comments.p_id
-'4csu0y' in post_ids.get_values()
+comments['link'] = comments.link_id.str.split('_').str.get(1)
+have_parents = comments[comments.link.isin(posts.id)]
+orphans = comments[~comments.link.isin(posts.id)] # 2281 removed
 
-for x in post_ids:
-    if x in posts.id.get_values():
-        print x
+have_parents.to_csv('have_parents.csv')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
 parent_ids = comments.p_id # 98294
 

@@ -6,7 +6,7 @@ Created on Mon Jun 27 17:47:58 2016
 """
 
 import pandas as pd
-df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/practice_data.csv')
+df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/practice_data.csv', index_col=0)
 
 ''''count of subreddits by author '''
 names = df[['subreddit', 'author']]

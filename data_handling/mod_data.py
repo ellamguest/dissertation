@@ -7,7 +7,7 @@ Created on Thu Jun 23 14:19:01 2016
 import pandas as pd
 from subreddits_subsets import d
 
-df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/practice_data.csv')
+df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/practice_data.csv', index_col=0)
 
 sub_list = ['AskAcademia', 'AskAnthropology', 'AskComputerScience',
        'AskElectronics', 'AskEngineers', 'AskHistorians',

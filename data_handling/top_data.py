@@ -7,7 +7,7 @@ Created on Thu Jun 23 15:42:22 2016
 
 import pandas as pd
 
-df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/practice_data.csv')
+df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/practice_data.csv', index_col=0)
 
 link_ids = test.link_id.str.split('_', expand=True)[1].sort_values()
 parent_ids = test.p_id.sort_values()
@@ -30,8 +30,10 @@ df['p_level'] = p[0]
 df['p_id'] = p[1]
 x = pd.get_dummies(df['p_level'])
 df['top'] = x['t1']
+df['not_top'] = (df['top'] - 1) * -1
 
 df['mod'] = pd.get_dummies(df['distinguished'])
+df['not_mod'] = (df['mod'] - 1) * -1
 
 all_tops = df[df.p_level=='t1']
 all_tops['top_count'] = all_tops.groupby('subreddit')['subreddit'].transform('count')

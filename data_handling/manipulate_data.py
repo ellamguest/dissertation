@@ -8,7 +8,7 @@ Created on Mon Jun 20 16:06:51 2016
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/2016_04.csv')
+df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/2016_04.csv', index_col=0)
 
 
 df['mod'] = pd.get_dummies(df['distinguished']) # does this work
