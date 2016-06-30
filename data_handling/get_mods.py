@@ -30,7 +30,6 @@ for x in mod_dict.keys():
     mod_nums[x] = len(mod_dict[x])
 
 
-
 newdf = pd.DataFrame()
 newdf['subreddit'] = mod_nums.keys()
 newdf['mods'] = mod_nums.values()
