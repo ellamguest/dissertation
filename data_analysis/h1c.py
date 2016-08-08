@@ -6,7 +6,8 @@ Created on Wed Aug  3 11:33:04 2016
 """
 
 import pandas as pd
-from scipy.stats import ttest_ind
+import numpy as np
+#from scipy.stats import ttest_ind
 import statsmodels.formula.api as smf
 df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/have_parents.csv', index_col=0)
 df = df[df['author'] != '[deleted]']
@@ -44,7 +45,8 @@ mods['author'] = mods.index
 x = mod_comments.groupby('author')['count'].sum()
 mods['num_comments'] = x
 mods = mods.sort_values('num_comments')
-mods.plot(x='author',y='num_comments', kind='bar')
+mods['log(num_comments)'] = np.log(mods['num_comments'])
+mods.plot(x='author',y='log(num_comments)', kind='bar')
 
 nonmod_comments = df[df['mod'] == 0] # 30
 nonmods = nonmod_comments.drop_duplicates('author')
