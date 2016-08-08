@@ -13,7 +13,7 @@ df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/rank
 
 sample = df[df['subreddit']=='AskAnthropology']
 
-md = smf.mixedlm('score ~ rank', sample, groups=sample['author'], re_formula='~rank')
+md = smf.mixedlm('score ~ rank', df, groups=df['author'], re_formula='~rank')
 
 mdf = md.fit()
 
