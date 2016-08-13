@@ -15,6 +15,7 @@ stats_df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handlin
 df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/have_parents.csv', index_col=0)
 df = df[df['author'] != '[deleted]']
 df = df[df['author'] != '#NAME?']
+df['count'] = 1
 sample = df[df['subreddit']=='AskAnthropology']
 
 

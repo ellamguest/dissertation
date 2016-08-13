@@ -75,3 +75,7 @@ x = x.as_csv()
 f = open('h2b_results.csv', 'w')
 f.write(x)
 f.close()
+
+
+###### h2b new = chi-square for each subreddit
+x = pd.crosstab(index=[df['subreddit'],df['mod']], columns=df['top'])
