@@ -10,6 +10,11 @@ import statsmodels.api as sm
 import statsmodels.formula.api as smf
 
 df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/ranked_data.csv', index_col=0)
+df = df[df['author'] != '[deleted]']
+df = df[df['author'] != '#NAME?']
+df = df[df['author'] != 'AutoModerator']
+df = df[df['author'] != 'AskScienceModerator']
+df['count'] = 1
 
 sample = df[df['subreddit']=='AskAnthropology']
 

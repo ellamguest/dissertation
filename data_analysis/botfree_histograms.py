@@ -22,9 +22,10 @@ authors.to_csv('botfree_author_data.csv')
 
 # author count hist
 x = authors[authors['author_count'] < 11]
-plt.hist(x['author_count'], bins=20)
-plt.title("Histogram of Comment Count by Authors")
-plt.xlabel("Comment Count")
+x = stats_df['del_rate']
+plt.hist(mods['author_count'], bins=10)
+plt.title("Histogram of Comment Counts of Moderators")
+plt.xlabel("Number of Comments Made")
 plt.ylabel("Frequency")
 plt.show()
 

@@ -8,12 +8,12 @@ Created on Mon Jun 27 17:04:34 2016
 import praw
 import pandas as pd
 stats_df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/sub_stats.csv', header=0, index_col=0)
-
+from scipy import stats
 
 r = praw.Reddit(user_agent="test by /u/wednesdaysguest")
 name = 'AskSocialScience'
 
-names = list(stats_df.subreddit.get_values())
+names = list(stats_df.index)
 
 '''getting all mods as of june 2016, not nec those during time point'''
 mod_dict = {}
@@ -29,6 +29,9 @@ mod_nums = {}
 for x in mod_dict.keys():
     mod_nums[x] = len(mod_dict[x])
 
+stats_df['all_mods'] = [1,6,2,7,7,35,4,15,8,415,16,1]
+stats_df['frac_mods2'] = stats_df['all_mods']/stats_df['authors']
+stats.ttest_ind(stats_df['frac_mods2'], stats_df['del_rate'])
 
 newdf = pd.DataFrame()
 newdf['subreddit'] = mod_nums.keys()
