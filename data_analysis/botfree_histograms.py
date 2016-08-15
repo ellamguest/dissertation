@@ -32,8 +32,8 @@ plt.show()
 #comment score hist
 # 64785 (deleted omitted)
 # highest = 4267
-x100 = df[df['score'] < 101] # 64211
-x = x100[x100['score'] > -10] # 64042
+x100 = df[df['score'] < 20] # 64211
+x = x100[x100['score'] > -20] # 64042
 #==============================================================================
 # plt.hist(x['score'], bins=20)
 # plt.title("Histogram of Comment Scores")
