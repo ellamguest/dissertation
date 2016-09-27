@@ -8,7 +8,7 @@ Created on Fri Aug 12 12:20:25 2016
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-df = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/botfree_notdel_comment_data.csv', index_col=0)
+df2 = pd.read_csv('/Users/emg/Programmming/GitHub/dissertation/data_handling/botfree_notdel_comment_data.csv', index_col=0)
 
 x = df[df['score'] <= 20]
 x = x[x['score'] >= -20] # 64042
@@ -18,10 +18,13 @@ x['score'].hist()
 
 x=x[x['mod']==1]
 
-
-plt.hist(np.tanh(df['score']/10), bins=10)
-plt.title("Histogram of Comment Scores (tanh transformed)")
-plt.xlabel("tanh(Score/10)")
+x = df[df['rank'] < 31]
+x = x[x['rank'] > 2]
+#plt.hist(data, bins=range(min(data), max(data) + binwidth, binwidth))
+#plt.hist(x['rank'], bins=15)
+plt.hist(x['rank'], bins=range(3,21,1))
+plt.title("Histogram of Author Comment Count")
+plt.xlabel("Comment Count")
 plt.ylabel("Frequency")
 plt.show()
 
